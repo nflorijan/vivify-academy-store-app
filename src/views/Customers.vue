@@ -1,7 +1,11 @@
 <template>
-    <div>
-        <AppCustomers/>
-    </div>
+  <div>
+    <b-container class="bv-example-row">
+      <b-row>
+        <b-col><AppCustomers/></b-col>
+      </b-row>
+    </b-container>
+  </div>
 </template>
 
 <script>

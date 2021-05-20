@@ -2,7 +2,7 @@
   <div id="app">
     <div>
       <b-nav tabs align="center">
-        <b-nav-item active><router-link to="/">Products</router-link></b-nav-item>
+        <b-nav-item><router-link to="/">Products</router-link></b-nav-item>
         <b-nav-item><router-link to="/customers">Customers</router-link></b-nav-item>
       </b-nav>
     </div>
