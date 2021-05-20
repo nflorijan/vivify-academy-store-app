@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Customer: {{ customer.firstName }} {{ customer.lastName }}</h3>
+    <h3>Customer: {{ customer.firstName ? customer.firstName : '' }} {{ customer.lastName }}</h3>
     <p>Email: {{ customer.email }}</p>
     <h4>Customer Products</h4>
     <b-list-group>
@@ -17,9 +17,6 @@ export default {
     customerId: {
       type: Number
     }
-  },
-  mounted () {
-    console.log(customerService.getCustomer(this.customerId))
   },
   computed: {
     customer () {

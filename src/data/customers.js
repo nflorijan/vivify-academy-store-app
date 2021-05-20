@@ -41,7 +41,7 @@ export default class CustomerService {
   }
 
   generateId () {
-    return Math.random().toString(36).substr(2, 9)
+    return customers[customers.length - 1].id + 1
   }
 }
 export const customerService = new CustomerService()

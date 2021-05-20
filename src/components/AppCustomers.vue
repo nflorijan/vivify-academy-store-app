@@ -46,7 +46,11 @@ export default {
   data () {
     return {
       customers: customerService.getAllCustomers(),
-      newCustomer: {},
+      newCustomer: {
+        firstName: '',
+        lastName: '',
+        email: ''
+      }
     }
   },
   methods: {
@@ -56,7 +60,6 @@ export default {
     createCustomer () {
       this.newCustomer.id = customerService.generateId()
       customerService.addCustomer(this.newCustomer)
-      this.newCustomer = {}
     }
   }
 }
