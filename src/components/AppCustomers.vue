@@ -7,13 +7,15 @@
         <th>First name</th>
         <th>Last name</th>
         <th>Email</th>
+        <th>Latest Purchases</th>
         <th></th>
       </tr>
-      <tr v-for="(customer, index) in customers" :key="index">
+      <tr v-for="customer in customers" :key="customer.id">
         <td>{{ customer.id }}</td>
         <td>{{ customer.firstName }}</td>
         <td>{{ customer.lastName }}</td>
         <td>{{ customer.email }}</td>
+        <td><router-link :to="{ name: 'Customer', params: { id: customer.id }}">Latest Purchases</router-link></td>
         <td><b-button pill variant="outline-danger" @click="deleteCustomer(customer)">Delete</b-button></td>
       </tr>
     </table>
