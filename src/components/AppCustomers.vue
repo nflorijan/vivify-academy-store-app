@@ -49,7 +49,8 @@ export default {
       newCustomer: {
         firstName: '',
         lastName: '',
-        email: ''
+        email: '',
+        customerProducts: []
       }
     }
   },

@@ -8,14 +8,17 @@
         <th>Id</th>
         <th>Title</th>
         <th>Quantity</th>
+        <th></th>
       </tr>
       <tr v-for="product in filteredProducts" :key="product.id">
         <td>{{ product.id }}</td>
         <td>{{ product.title }}</td>
         <td>
-          <button :disabled="shoudlDisableButton(product.id)" @click="decrement(product)">-</button>
+          <button :disabled="!product.quantity" @click="decrement(product)">-</button>
             {{ product.quantity }}
-          <button @click="increment(product)">+</button></td>
+          <button @click="increment(product)">+</button>
+        </td>
+         <td><router-link :to="{ name: 'Product', params: { id: product.id }}">Sell</router-link></td>
         </tr>
     </table>
   </div>
@@ -27,34 +30,25 @@ export default {
     return {
       search: "",
       products: productService.getAllProducts(),
-      productsWithDisabledButton: []
     }
   },
   computed: {
     filteredProducts() {
-      return this.search === ""
-        ? this.products
-        : this.products.filter(({ title }) =>
-            title.toUpperCase().startsWith(this.search.toUpperCase())
-          );
+      if(!this.search) {
+        return this.products
+      }
+      return this.products.filter(({ title }) =>
+          title.toUpperCase().startsWith(this.search.toUpperCase())
+      );
     },
   },
   methods: {
     increment(product) {
       product.quantity++
-      if(this.productsWithDisabledButton.includes(product.id)) {
-        this.productsWithDisabledButton = this.productsWithDisabledButton.filter(productId => productId !== product.id)
-      }
     },
     decrement(product) {
       product.quantity--
-      if(product.quantity === 0) {
-        this.productsWithDisabledButton.push(product.id)
-      }
     },
-    shoudlDisableButton(productId) {
-      return this.productsWithDisabledButton.includes(productId)
-    }
   }
 }
 </script>

@@ -24,12 +24,32 @@ const products = [
     title: 'Logitech Keyboard',
     quantity: 65
   },
+  {
+    id: 7,
+    title: 'iPhone 13 Pro',
+    quantity: 5
+  },
+  {
+    id: 8,
+    title: 'Samsung Galaxy 10',
+    quantity: 0
+  },
 ]
 
 export default class ProductService {
   getAllProducts () {
     return products
   }
+
+  getProduct(id) {
+    return products.find(data => data.id === id)
+  }
+
+  decrementQuantity(productId) {
+    const product = this.getProduct(productId)
+    product.quantity -= 1
+  }
+
 }
 
 export const productService = new ProductService()
