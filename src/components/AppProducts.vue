@@ -15,7 +15,6 @@
         <td><button :disabled="shoudlDisableButton(product.id)" @click="decrement(product)">-</button>{{ product.quantity }}<button @click="increment(product)">+</button></td>
       </tr>
     </table>
-
   </div>
 </template>
 <script>
