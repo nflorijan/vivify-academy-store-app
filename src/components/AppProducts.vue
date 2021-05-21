@@ -12,8 +12,11 @@
       <tr v-for="product in filteredProducts" :key="product.id">
         <td>{{ product.id }}</td>
         <td>{{ product.title }}</td>
-        <td><button :disabled="shoudlDisableButton(product.id)" @click="decrement(product)">-</button>{{ product.quantity }}<button @click="increment(product)">+</button></td>
-      </tr>
+        <td>
+          <button :disabled="shoudlDisableButton(product.id)" @click="decrement(product)">-</button>
+            {{ product.quantity }}
+          <button @click="increment(product)">+</button></td>
+        </tr>
     </table>
   </div>
 </template>
@@ -49,7 +52,7 @@ export default {
         this.productsWithDisabledButton.push(product.id)
       }
     },
-    shoudlDisableButton (productId) {
+    shoudlDisableButton(productId) {
       return this.productsWithDisabledButton.includes(productId)
     }
   }
