@@ -1,7 +1,7 @@
 const products = [
   {
     id: 1,
-    title: 'iPone 11',
+    title: 'iPhone 11',
     quantity: 11
   },
   {
