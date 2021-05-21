@@ -12,7 +12,7 @@
       <tr v-for="product in filteredProducts" :key="product.id">
         <td>{{ product.id }}</td>
         <td>{{ product.title }}</td>
-        <td>{{ product.quantity }}</td>
+        <td><button :disabled="shoudlDisableButton(product.id)" @click="decrement(product)">-</button>{{ product.quantity }}<button @click="increment(product)">+</button></td>
       </tr>
     </table>
 
@@ -25,6 +25,7 @@ export default {
     return {
       search: "",
       products: productService.getAllProducts(),
+      productsWithDisabledButton: []
     }
   },
   computed: {
@@ -36,10 +37,36 @@ export default {
           );
     },
   },
+  methods: {
+    increment(product) {
+      product.quantity++
+      if(this.productsWithDisabledButton.includes(product.id)) {
+        this.productsWithDisabledButton = this.productsWithDisabledButton.filter(productId => productId !== product.id)
+      }
+    },
+    decrement(product) {
+      product.quantity--
+      if(product.quantity === 0) {
+        this.productsWithDisabledButton.push(product.id)
+      }
+    },
+    shoudlDisableButton (productId) {
+      return this.productsWithDisabledButton.includes(productId)
+    }
+  }
 }
 </script>
 <style scoped>
 label {
   margin-right: 10px;
+}
+
+td button {
+  border: 0;
+  font-size: 20px;
+}
+
+td button:hover {
+  color: blue;
 }
 </style>
